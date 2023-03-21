@@ -1,0 +1,63 @@
+
+
+
+
+
+
+
+
+<section>
+
+<main>
+    <div class="head-title">
+      <div class="left">
+        <h1>Banners</h1>
+        <ul class="breadcrumb">
+          <li>
+            <a href="#">Banners</a>
+          </li>
+        </ul>
+      </div>
+      <a href="/admin/banner/add_banner" class="btn-download">
+        <span class="text">Banner</span>
+        <span class="material-symbols-outlined">
+          add
+          </span>
+      </a>
+    </div>
+
+   
+
+
+<section>
+    <div class="row ">
+        <% if(banner.length > 0){
+           for(i = 0;i < banner.length;i++){ %>
+            <div class="card col-md-4" style="width: 18rem;">
+                <img src="/img/marketplace/products/<%= banner[i].image %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><%= banner[i].title %></h5>
+                  <p class="card-text"><%= banner[i].description %></p>
+                  <a href="/admin/banners/update_banner?id=<%= banner[i]._id %>" class="btn btn-primary">Update</a>
+                  <a href="/admin/banners/delete_banner?id=<%= banner[i]._id %>" class="btn btn-primary">Delete</a>
+                </div>
+              </div>
+            <% }
+           
+         }else{ %>
+            <p>banner not found</p>
+        <% } %>
+        
+    </div>
+</section>
+</body>
+</html>
+
+  
+
+  </main>
+  </section>
+  
+
+
+  

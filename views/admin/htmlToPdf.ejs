@@ -1,0 +1,46 @@
+<body>
+    <div class="table-data">
+        <div class="order">
+    <table id="example">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>customer</th>
+            <th>Order Date</th>
+            <th>Products</th>
+            <th>Total</th>
+            <th>Payment Status</th>
+            <th>order Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(orderData.length > 0){ %>
+            <% for(let i=0;i< orderData.length;i++){ %>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= orderData[i].user.name %></td>
+              <td><%= orderData[i].createdDate.toLocaleDateString() %></td>
+              <td>
+                <% for(let j = 0;j < orderData[i].product.length;j++){ %>
+                  <%= orderData[i].product[j].productId.name %>
+                 <br>
+                <% } %>
+              </td>
+              <td><%= orderData[i].totalPrice %></td>
+              <td><%= orderData[i].paymentStatus %></td>
+              <td><%= orderData[i].orderStatus %></td>
+          </tr>
+          <% }
+           }else{ %>
+            <tr>
+              <td>order not found</td>
+          </tr>
+    
+          <% } %>
+        </div>
+        </div>
+    
+        </tbody>
+      </table>
+ </body>
+  </html>
