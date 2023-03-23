@@ -7,7 +7,8 @@ user_route.set('views','./views/users');
 
 const session=require("express-session");
 const config=require("../config/config");
-const auth=require("../middleWare/auth")
+// const auth=require("../middleWare/auth")
+const auth=require("../middleware/auth")
 
 // user_route.use(session({secret:config.sessionSecret,resave: true,
 //     saveUninitialized: true}));
