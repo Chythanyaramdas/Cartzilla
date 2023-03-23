@@ -536,14 +536,21 @@ const shopSingle=async(req,res)=>{
 
     const id=req.query.id
     console.log('id : ' + id)
-    const userData=await User.find({_id:req.session.userid})
+    let userData;
+    const orderLength = null
+    const orderData = null
+    if(req.session.userid){
+      userData=await User.find({_id:req.session.userid})
+      const orderData=await order.find({user:req.session.userid,'product.productId':id})
+      console.log(orderData);
+      const orderLength=orderData.length
+    }
+     
     const products=await product.findOne({_id: id})
     console.log('product : ' + products);
     const category=await Categorie.find({is_delete:false})
 console.log(products.reviews.length);
-const orderData=await order.find({user:req.session.userid,'product.productId':id})
-console.log(orderData);
-const orderLength=orderData.length
+
 console.log(orderLength);
     res.render('shopSingle',{products,category,userData,orderData,orderLength})
 

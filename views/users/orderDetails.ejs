@@ -251,6 +251,7 @@
                 <tr>
                     
                     <th>Product</th>
+                    <th>Image</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total Price</th>
@@ -263,9 +264,11 @@
                        
                     <tr>
                         <td><%= product.productId.name %></td>
+                        <td><img src="/img/marketplace/products/<%= product.productId.image[0] %>" alt="Product Image" style="width: 100px; height: 100px; margin-right: 10px;"></td>
                         <td><%= product.productId.price %></td>
+                        
                         <td><%= product.quantity %></td>
-                        <td><%= orderDetails.totalPrice %></td>
+                        <td><%= product.quantity*product.productId.price %></td>
                     </tr>
                 <%
             

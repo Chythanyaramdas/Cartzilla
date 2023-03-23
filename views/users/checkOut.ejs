@@ -576,33 +576,32 @@
                 <!-- first part select address -->
 
             
-            <button class="address-show-btn btn btn-primary ml-5 rounded-pill">Select the Shipping Address</button>
-            <p class="ml-5">You can add address in the form also</p>      
-                       <% for(let address of cart.address){ %>
-                           <div class="row ">
-                               <div class="card ml-3 address-div col-md-4"  style="width: 18rem; display: none;"  > 
-                                   <div class="card-body">
-                                     <input type="radio" name="address" value="<%= address._id %>" class="address_id">  
-                                     <h5 class="card-title " id="name" >Name: <span class="a-<%= address._id %>"><%=address.name%></span> </h5>
-                                     <h6 class="card-subtitle mb-2 text-muted " id="phoneNumber">Phone Number : <span class="a-<%= address._id %>"><%= address.phoneNumber%></span> </h6>
-                                     
-                                    
-                                     <p class="card-text ">pincode : <span class="a-<%= address._id %>" ><%= address.pinCode%></span></p>
-                                     <p class="card-text ">locality : <span class="a-<%= address._id %>" ><%= address.locality%></span></p>
-                                     <p class="card-text ">District :<span class="a-<%= address._id %>"><%= address.district%></span></p> 
-                                     <p class="card-text ">State : <span class="a-<%= address._id %>" ><%= address.state%></span></p>
-
-                                     <a href="/editAddress?aId=<%= address._id %>" class="card-link">Edit</button></a>
-                                     <a href="/deleteAddress?aId=<%= address._id %>">Delete</a>
-                                     
+                <button class="address-show-btn btn btn-primary ml-5 rounded-pill">Select the Shipping Address</button>
+       
+                <div class="container-fluid row prodcut-listing-after p-4">
+                           <% for(let address of cart.address){ %>
+                               
+                                
+                                   <div class="card ml-1 address-div col-md-3  "  style="width: 18rem; display: none ; margin-right: 40px; margin-bottom: 10px; padding: 20px;"  > 
+                                       <div class="card-body">
+                                         <input type="radio" name="address" value="<%= address._id %>" class="address_id">  
+                                         <h5 class="card-title " id="name" >Name: <span class="a-<%= address._id %>"><%=address.name%></span> </h5>
+                                         <h6 class="card-subtitle mb-2 text-muted " id="phoneNumber">Phone Number : <span class="a-<%= address._id %>"><%= address.phoneNumber%></span> </h6>
+                                         <p class="card-text a-<%= address._id %>" id="pinCode" ><%=address.pinCode%></p>
+                                         <p class="card-text a-<%= address._id %>" id="locality"><%=address.locality%></p>
+                                         <p class="card-text a-<%= address._id %>" id="address"><%= address.address%></p> 
+                                         <p class="card-text ">District :<span class="a-<%= address._id %>"><%= address.district%></span></p> 
+                                         <p class="card-text ">State : <span class="a-<%= address._id %>" ><%= address.state%></span></p>
+                                         <a href="/editAddress?aId=<%= address._id %> " class="card-link">Edit</button></a>
+                                         <a href="/checkoutDeleteAddress?aId=<%= address._id %>" class="card-link">Remove</a>
+                                       </div>
                                    </div>
-                               </div>
-                           </div>
-                           
-                             <%
-                       }
-                        %>
-
+                               
+                               
+                         
+                                 <%
+                           } %>
+                       </div>          
 
 <!-- second  part starting of form  -->
 
@@ -753,7 +752,7 @@
 
   <div  class="input-group ">
     <div class="form-control mr-3 border-0" >
-    <input type="text" class="form-control couponCode" name="coupon">
+    <input type="text" class="form-control couponCode" name="coupon" id="checkout-coupon">
   </div>
     <div class="input-group-append mt-2">
       <button class="btn btn-primary"  onclick="applyCoupon()">Apply Coupon</button>
@@ -766,6 +765,26 @@
   </div>
 
 
+
+  <button class="coupon-show-btn btn btn-primary ml-5 rounded-pill">Select the Coupon</button>
+       
+  <div class="container-fluid row prodcut-listing-after p-4">
+             <% for(let coupon of couponData){ %>
+                 
+                  
+                     <div class="card ml-1 coupon-div col-md-3  "  style="width: rem; display: none ; margin-right: 40px; margin-bottom: 10px; padding: 20px;"  > 
+                         <div class="card-body">
+                           <input type="radio" name="coupon" value="<%= coupon._id %>" class="coupon_id">  
+                           <h5 class="card-title " id="names" > <span class="<%= coupon._id %>"><%=coupon.couponCode%></span> </h5>
+                           
+                         </div>
+                     </div>
+                 
+                 
+           
+                   <%
+             } %>
+         </div>  
 
             <!-- Navigation (desktop)-->
             <div class="d-none d-lg-flex pt-4 mt-3">
@@ -1007,9 +1026,40 @@
     <!-- Back To Top Button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon ci-arrow-up">   </i></a>
 
 
-
+    <script>
+      const couponShow = document.querySelector('.coupon-show-btn')
+      couponShow.addEventListener('click',()=>{
+          document.querySelectorAll('.coupon-div').forEach((event)=>{
+              event.style.display = 'block';
+          }) 
+      })
+      
     
+
+    const couponRadio = document.querySelectorAll('.coupon_id')
+    const namesInput = document.querySelector('.names')
+    const idsInput=document.querySelector(".")
+
+    couponRadio.forEach((coupon)=>{
+    coupon.addEventListener('change',(event)=>{
+    const couponId = event.target.value
+    alert(couponId )
+    const elements = document.querySelectorAll('.a-'+ couponId)  
+    console.log(elements.length);
+    elements.forEach((element,index)=>{
+      
+        if(index === 0){
+            idsInput.value=couponId
+            namesInput.value = element.textContent
+        }
+      })
+    
+    
+  })
+  })
           
+</script>
+
 
     <!-- select radio button  -->
     <script>

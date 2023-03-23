@@ -13,8 +13,9 @@ const loadCheckOut=async(req,res)=>{
     try {
        const id =req.query.id
         const userData=await User.findById(req.session.userid).populate('cart.item.productId')
-        const address=userData.address  
-        res.render('checkOut',{cart:userData,address})
+        const address=userData.address 
+        const couponData=await coupon.find ({is_delete:false})
+        res.render('checkOut',{cart:userData,address,couponData})
         
     } catch (error) {
         console.log(error);
