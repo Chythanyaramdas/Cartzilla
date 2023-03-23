@@ -806,7 +806,7 @@ const salesReport=async(req,res)=>{
      try {
 
        
-       
+       //
     //      const circular = categoryWise
          
 

@@ -774,8 +774,10 @@
                   
                      <div class="card ml-1 coupon-div col-md-3  "  style="width: rem; display: none ; margin-right: 40px; margin-bottom: 10px; padding: 20px;"  > 
                          <div class="card-body">
-                           <input type="radio" name="coupon" value="<%= coupon._id %>" class="coupon_id">  
-                           <h5 class="card-title " id="names" > <span class="<%= coupon._id %>"><%=coupon.couponCode%></span> </h5>
+                           <input type="radio" name="coupon" value="<%= coupon.couponCode %>" class="coupon_id">  
+                           <h5 class="card-title " id="names" > <span class="a-<%= coupon._id %>"><%=coupon.couponCode%></span> </h5>
+            
+                                         
                            
                          </div>
                      </div>
@@ -1038,23 +1040,15 @@
 
     const couponRadio = document.querySelectorAll('.coupon_id')
     const namesInput = document.querySelector('.names')
-    const idsInput=document.querySelector(".")
+    const idsInput=document.querySelector(".couponId")
 
     couponRadio.forEach((coupon)=>{
     coupon.addEventListener('change',(event)=>{
+    
     const couponId = event.target.value
-    alert(couponId )
-    const elements = document.querySelectorAll('.a-'+ couponId)  
-    console.log(elements.length);
-    elements.forEach((element,index)=>{
-      
-        if(index === 0){
-            idsInput.value=couponId
-            namesInput.value = element.textContent
-        }
-      })
-    
-    
+
+    const elements = document.querySelector('.couponCode') 
+    elements.value = couponId
   })
   })
           
