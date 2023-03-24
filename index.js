@@ -1,7 +1,8 @@
 require('dotenv').config()
 const mongoose=require("mongoose");
 mongoose.set('strictQuery',false);
-mongoose.connect( "mongodb+srv://Chythanya:chy_thu3@mongoclient.qo884kd.mongodb.net/user_management_system?retryWrites=true&w=majority");
+
+mongoose.connect( process.env.ATLAS_CONNECT);
 
 const express=require("express");
 const session=require("express-session")

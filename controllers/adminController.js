@@ -996,7 +996,7 @@ const userManagement = async(req,res)=>{
           {name:{$regex:'.*'+search+'.*',$options:'i'}},
           {emali:{$regex:'.*'+search+'.*',$options:'i'}}
       ]})
-      res.render('UserManagement',{users:userData})
+      res.render('userManagement',{users:userData})
 
   } catch (error) {
       console.log(error.message)

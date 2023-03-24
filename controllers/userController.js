@@ -305,16 +305,17 @@ const loadLand=async(req,res)=>
 {
 
   try {
-
+   
     if(req.session.userid)
     {
     let userSession=req.session.userid;
     const  banners=await banner.find({is_delete:false})
     const category=await Categorie.find({})
     const products=await product.find({is_delete:false});
+    const userData = await User.findById(req.session.userid).populate('cart.item.productId')
     console.log(category);
    console.log(banners);
-    res.render('home',{userSession,banners,category,products})
+    res.render('home',{userSession,banners,category,products,cart:userData.cart})
 
     }
 
@@ -324,6 +325,7 @@ const loadLand=async(req,res)=>
     const  banners=await banner.find({is_delete:false})
     const category=await Categorie.find({})
     const products=await product.find({is_delete:false});
+     
     console.log(category);
   // console.log(banners);
     res.render('home',{banners,category,products})
@@ -456,7 +458,7 @@ const loadProducts=async(req,res)=>{
     console.log('kkoooooo');
     let isRender=req.query.isRender|| true;
 
-    let userData=null;
+    let userData;
 
     const query={
       is_delete:false
@@ -495,7 +497,7 @@ const loadProducts=async(req,res)=>{
     if(req.session.userid)
 
     {
-      userData=await User.find({_id:req.session.userid})
+      userData=await User.find({_id:req.session.userid}).populate('cart.item.productId')
     }
 
     const products =await product.find(query).sort(sortQuery).limit(limit*1)
@@ -504,8 +506,9 @@ const loadProducts=async(req,res)=>{
     const count=await product.find(query).countDocuments();
     console.log("count"+count);
 
+
     if(isRender == true)
-    {
+    {console.log(userData);
       console.log('hi');
       res.render("productListing",{products,category,userData,pid,cid,totalPages:Math.ceil(count/limit)})
     
@@ -540,7 +543,7 @@ const shopSingle=async(req,res)=>{
     const orderLength = null
     const orderData = null
     if(req.session.userid){
-      userData=await User.find({_id:req.session.userid})
+      userData=await User.find({_id:req.session.userid}).populate('cart.item.productId')
       const orderData=await order.find({user:req.session.userid,'product.productId':id})
       console.log(orderData);
       const orderLength=orderData.length
@@ -601,18 +604,16 @@ const addToCart=async(req,res)=>{
 
   try {
 
-    const quantity=parseInt(req.body.quantity)
+    const quantity=parseInt(req.body.quantity)|| 1
     const productId=req.body.id;
     const price = parseInt(req.body.price);
-    console.log(price);
-
-
     // const name=parseInt(req.body.name);
     // const image=req.file.fileName;
     // console.log("image"+image);
     const productData=await product.findById({_id:productId})
+    console.log('prodata'+ productData);
     const userId=req.session.userid;
-    const userData=await User.findById({_id:userId})
+    const userData=await User.findById(userId)
     
     const indexNumber=userData.cart.item.findIndex(productItem=>{
 
@@ -634,9 +635,10 @@ const addToCart=async(req,res)=>{
 
       
     }
-    console.log('hi');
-    userData.cart.totalPrice+=(productData.price*quantity)
-    const updated=await userData.save()
+    
+    userData.cart.totalPrice+=productData.price*quantity
+
+    await userData.save()
     res.redirect('/cart')
     
   } catch (error) {
@@ -694,7 +696,7 @@ console.log(updatedCart);
 
 
     console.log(product);
-    const totalPrice=product.quantity*product.productId.price
+    const totalPrice=parseInt(product.quantity*product.productId.price)
     console.log(total);
     console.log(totalPrice);
     res.json({success:true,total,totalPrice,quantity:product.quantity})

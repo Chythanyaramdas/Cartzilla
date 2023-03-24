@@ -283,53 +283,16 @@
                   <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-heart"></i></div></a><a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="#signin-modal" data-bs-toggle="modal">
                   <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-user"></i></div>
                   <div class="navbar-tool-text ms-n3"><small> <a href="/register">Hello, Sign in</small>My Account</a></div></a>
-                <div class="navbar-tool dropdown ms-3"><a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="/cart"><span class="navbar-tool-label">4</span><i class="navbar-tool-icon ci-cart"></i></a><a class="navbar-tool-text" href="/cart"><small>My Cart</small>$265.00</a>
+                  <% if (typeof userData!=='undefined'){ %>
+                <div class="navbar-tool dropdown ms-3"><a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="/cart"><span class="navbar-tool-label"><%= userData[0].cart.item.length %></span><i class="navbar-tool-icon ci-cart"></i></a><a class="navbar-tool-text" href="/cart"><small>My Cart</small></a>
+                  <%}
+                  else{%>
+                   
+                    <div class="navbar-tool dropdown ms-3"><a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="/cart"><span class="navbar-tool-label">0</span><i class="navbar-tool-icon ci-cart"></i></a><a class="navbar-tool-text" href="/cart"><small>My Cart</small></a>
+                      <%}%>
                   <!-- Cart dropdown-->
-                  <div class="dropdown-menu dropdown-menu-end">
-                    <div class="widget widget-cart px-3 pt-2 pb-3" style="width: 20rem;">
-                      <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
-                        <div class="widget-cart-item pb-2 border-bottom">
-                          <button class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
-                          <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img src="img/shop/cart/widget/01.jpg" width="64" alt="Product"></a>
-                            <div class="ps-2">
-                              <h6 class="widget-product-title"><a href="shop-single-v1.html">Women Colorblock Sneakers</a></h6>
-                              <div class="widget-product-meta"><span class="text-accent me-2">$150.<small>00</small></span><span class="text-muted">x 1</span></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="widget-cart-item py-2 border-bottom">
-                          <button class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
-                          <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img src="img/shop/cart/widget/02.jpg" width="64" alt="Product"></a>
-                            <div class="ps-2">
-                              <h6 class="widget-product-title"><a href="shop-single-v1.html">TH Jeans City Backpack</a></h6>
-                              <div class="widget-product-meta"><span class="text-accent me-2">$79.<small>50</small></span><span class="text-muted">x 1</span></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="widget-cart-item py-2 border-bottom">
-                          <button class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
-                          <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img src="img/shop/cart/widget/03.jpg" width="64" alt="Product"></a>
-                            <div class="ps-2">
-                              <h6 class="widget-product-title"><a href="shop-single-v1.html">3-Color Sun Stash Hat</a></h6>
-                              <div class="widget-product-meta"><span class="text-accent me-2">$22.<small>50</small></span><span class="text-muted">x 1</span></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="widget-cart-item py-2 border-bottom">
-                          <button class="btn-close text-danger" type="button" aria-label="Remove"><span aria-hidden="true">&times;</span></button>
-                          <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img src="img/shop/cart/widget/04.jpg" width="64" alt="Product"></a>
-                            <div class="ps-2">
-                              <h6 class="widget-product-title"><a href="shop-single-v1.html">Cotton Polo Regular Fit</a></h6>
-                              <div class="widget-product-meta"><span class="text-accent me-2">$9.<small>00</small></span><span class="text-muted">x 1</span></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
-                        <div class="fs-sm me-2 py-2"><span class="text-muted">Subtotal:</span><span class="text-accent fs-base ms-1">$265.<small>00</small></span></div><a class="btn btn-outline-secondary btn-sm" href="shop-cart.html">Expand cart<i class="ci-arrow-right ms-1 me-n1"></i></a>
-                      </div><a class="btn btn-primary btn-sm d-block w-100" href="checkout-details.html"><i class="ci-card me-2 fs-base align-middle"></i>Checkout</a>
-                    </div>
-                  </div>
+                  
+
                 </div>
               </div>
             </div>
@@ -343,7 +306,7 @@
                 </div> -->
                 <!-- Departments menu-->
                 <ul class="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
-                  <li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-lg-0" href="#" data-bs-toggle="dropdown"><i class="ci-view-grid me-2"></i>Departments</a>
+                  <li class=""><a class="" href="" data-bs-toggle=""><i class=""></i></a>
                     <div class="dropdown-menu px-2 pb-4">
                       <div class="d-flex flex-wrap flex-sm-nowrap">
                         <!-- <div class="mega-dropdown-column pt-3 pt-sm-4 px-2 px-lg-3">
@@ -443,7 +406,7 @@
                     </ul> -->
                   </li> 
 
-                  <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Shop</a>
+                  <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" href="/home/products" data-bs-toggle="dropdown">Shop</a>
                     <li class="nav-item dropdown active"><a class="nav-link dropdown-toggle" href="/address" data-bs-toggle="">Account</a>
                     <!-- <div class="dropdown-menu p-0">
                       <div class="d-flex flex-wrap flex-sm-nowrap px-2">
@@ -657,15 +620,15 @@
           <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb breadcrumb-light flex-lg-nowrap justify-content-center justify-content-lg-start">
-                <li class="breadcrumb-item"><a class="text-nowrap" href="index.html"><i class="ci-home"></i>Home</a></li>
-                <li class="breadcrumb-item text-nowrap"><a href="#">Shop</a>
+                <li class=""><a class="" href="index.html"><i class=""></i></a></li>
+                <li class="breadcrumb-item text-nowrap"><a href="#"></a>
                 </li>
-                <li class="breadcrumb-item text-nowrap active" aria-current="page">Grid left sidebar</li>
+                <li class="" aria-current="page"></li>
               </ol>
             </nav>
           </div>
           <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
-            <h1 class="h3 text-light mb-0">Shop grid left sidebar</h1>
+            <h1 class="h3 text-light mb-0">Products</h1>
           </div>
         </div>
       </div>
@@ -1245,14 +1208,14 @@
                     <!-- <option>Average Rating</option>
                     <option>A - Z Order</option>
                     <option>Z - A Order</option> -->
-                  </select><span class="fs-sm text-light opacity-75 text-nowrap ms-2 d-none d-md-block">of 287 products</span>
+                  </select><span class="fs-sm text-light opacity-75 text-nowrap ms-2 d-none d-md-block"></span>
 
 
                 </div>
               </div>
               <input type="hidden" value="<%= cid %>" id="product_data">
-              <div class="d-flex pb-3"><a class="nav-link-style nav-link-light me-3" href="#"><i class="ci-arrow-left"></i></a><span class="fs-md text-light">1 / 5</span><a class="nav-link-style nav-link-light ms-3" href="#"><i class="ci-arrow-right"></i></a></div>
-              <div class="d-none d-sm-flex pb-3"><a class="btn btn-icon nav-link-style bg-light text-dark disabled opacity-100 me-2" href="#"><i class="ci-view-grid"></i></a><a class="btn btn-icon nav-link-style nav-link-light" href="shop-list-ls.html"><i class="ci-view-list"></i></a></div>
+              <div class="d-flex pb-3"><a class="nav-link-style nav-link-light me-3" href="#"><i class=""></i></a><span class="fs-md text-light"></span><a class="nav-link-style nav-link-light ms-3" href="#"><i class=""></i></a></div>
+              <div class="d-none d-sm-flex pb-3"><a class="" href="shop-list-ls.html"><i class=""></i></a></div>
             </div> 
 
             <!-- <div class="col-12 pb-1">
