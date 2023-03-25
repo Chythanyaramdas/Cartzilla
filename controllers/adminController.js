@@ -960,7 +960,8 @@ const salesReportDownload = async(req,res)=>{
         }
         const orderData = await order.find({createdDate:{$gte:from,$lte:to}}).sort({createdDate:-1}).populate("user").populate("product.productId","name")
         const data= {
-            orderData:orderData
+            orderData:orderData,
+            from, to
         }
         const filePathName = path.resolve(__dirname,'../views/admin/htmlToPdf.ejs')
         const htmlString = fs.readFileSync(filePathName).toString()
